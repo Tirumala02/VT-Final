@@ -21,8 +21,8 @@ const Contact = () => {
             S.R. Nagar, Hyderabad - 500038
           </p>
           <p className='text-gray-700'>
-            Tel: +91-XXXXXXXXXX <br />
-            Email: <span className='text-[#D50000]'>contact@vtfashions.com</span>
+            Tel: +91 91602 27573<br />
+            Email: <span className='text-[#D50000]'>dressfashiond@gmail.com</span>
           </p>
         </div>
       </div>

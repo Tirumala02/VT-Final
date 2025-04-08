@@ -408,7 +408,7 @@ const PlaceOrder = () => {
                 value={formData.zipcode}
                 className="border border-gray-300 rounded py-1.5 px-3.5 w-full disabled:opacity-50"
                 type="number"
-                placeholder="Zipcode"
+                placeholder="Pincode"
                 disabled={isLoading}
               />
               <input

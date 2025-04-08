@@ -29,8 +29,8 @@ const Footer = () => {
         <div>
             <p className='text-xl font-medium mb-5 text-[#D50000]'>GET IN TOUCH</p>
             <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>+1-212-456-7890</li>
-                <li>support@vtfashions.com</li>
+                <li>+91 91602 27573</li>
+                <li>dressfashiond@gmail.com</li>
                 <li>Shop No.4, Sharada Complex, Near J.J Hospital,</li>
                 <li>Kalyan Nagar X Road, S.R Nagar,</li>
                 <li>Hyderabad - 500038.</li>
