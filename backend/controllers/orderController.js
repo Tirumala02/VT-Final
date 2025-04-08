@@ -191,7 +191,7 @@
 //             <h2 style="color: #333; text-align: center;">Thank You for Your Order!</h2>
 //             <p>Hello <strong>${address.firstName} ${address.lastName}</strong>,</p>
 //             <p>We have received your order and it is now being processed. Here are your order details:</p>
-            
+
 //             <table style="width: 100%; border-collapse: collapse;">
 //                 <thead>
 //                     <tr>
@@ -231,7 +231,7 @@
 //             }
 
 //             <p>If you have any questions, please contact us at <a href="mailto:support@example.com">support@example.com</a>.</p>
-            
+
 //             <p style="text-align: center; color: #777;">Thank you for shopping with us!</p>
 //         </div>
 //     </body>
@@ -272,7 +272,7 @@
 // const allOrders = async (req,res) => {
 
 //     try {
-        
+
 //         const orders = await orderModel.find({})
 //         res.json({success:true,orders})
 
@@ -289,13 +289,13 @@
 //     try {
 //       const userId = req.userId; // Get userId from authUser middleware
 //       let user;
-  
+
 //       console.log('Fetching orders for userId:', userId);
-  
+
 //       if (!userId) {
 //         return res.status(400).json({ success: false, message: 'User ID is required' });
 //       }
-  
+
 //       if (!userId.startsWith('guest_')) {
 //         if (!mongoose.Types.ObjectId.isValid(userId)) {
 //           return res.status(400).json({ success: false, message: 'Invalid User ID' });
@@ -304,9 +304,9 @@
 //       } else {
 //         user = await userModel.findOne({ guestId: userId });
 //       }
-  
+
 //       if (!user) return res.status(404).json({ success: false, message: 'User not found' });
-  
+
 //       const orders = await orderModel.find({ userId: user._id }).sort({ date: -1 });
 //       res.json({ success: true, orders });
 //     } catch (error) {
@@ -318,7 +318,7 @@
 // // update order status from Admin Panel
 // const updateStatus = async (req,res) => {
 //     try {
-        
+
 //         const { orderId, status } = req.body
 
 //         await orderModel.findByIdAndUpdate(orderId, { status })
@@ -528,37 +528,37 @@ const verifyRazorpay = async (req, res) => {
 
 // Send Order Confirmation Email
 const sendEmail = async (req, res) => {
-    console.log("sendEmail: Request received with body:", req.body);
-    try {
-      const { orderData } = req.body;
-      const userId = req.userId; // From authUser middleware
-      console.log("sendEmail: User ID:", userId);
-  
-      if (!orderData || !orderData.email) {
-        console.log("sendEmail: Missing orderData or email");
-        return res.status(400).json({ success: false, message: "Invalid order data: email is required" });
-      }
-  
-      if (!mongoose.Types.ObjectId.isValid(userId)) {
-        console.log("sendEmail: Invalid userId format:", userId);
-        return res.status(400).json({ success: false, message: "Invalid User ID" });
-      }
-  
-      const user = await userModel.findById(userId);
-      console.log("sendEmail: User found:", user ? user._id : "No user");
-  
-      if (!user) {
-        console.log("sendEmail: User not found for ID:", userId);
-        return res.status(404).json({ success: false, message: "User not found" });
-      }
-  
-      const { address, items, amount, paymentMethod, date, paymentId } = orderData;
-      console.log("paymentId" , paymentId);
-      const customerEmail = orderData.email;
-      const adminEmail = "anub0709@gmail.com"; // Replace with your admin email
-      const currencySymbol = "₹";
-  
-      const emailTemplate = `
+  console.log("sendEmail: Request received with body:", req.body);
+  try {
+    const { orderData } = req.body;
+    const userId = req.userId; // From authUser middleware
+    console.log("sendEmail: User ID:", userId);
+
+    if (!orderData || !orderData.email) {
+      console.log("sendEmail: Missing orderData or email");
+      return res.status(400).json({ success: false, message: "Invalid order data: email is required" });
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      console.log("sendEmail: Invalid userId format:", userId);
+      return res.status(400).json({ success: false, message: "Invalid User ID" });
+    }
+
+    const user = await userModel.findById(userId);
+    console.log("sendEmail: User found:", user ? user._id : "No user");
+
+    if (!user) {
+      console.log("sendEmail: User not found for ID:", userId);
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    const { address, items, amount, paymentMethod, date, paymentId } = orderData;
+    console.log("paymentId", paymentId);
+    const customerEmail = orderData.email;
+    const adminEmail = "anub0709@gmail.com"; // Replace with your admin email
+    const currencySymbol = "₹";
+
+    const emailTemplate = `
       <html>
       <body style="font-family: Arial, sans-serif;">
           <div style="max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px;">
@@ -576,15 +576,15 @@ const sendEmail = async (req, res) => {
                   </thead>
                   <tbody>
                       ${items
-                        .map(
-                          (item) => `
+        .map(
+          (item) => `
                       <tr>
                           <td style="border-bottom: 1px solid #ddd; padding: 10px;">${item.name} (${item.size})</td>
                           <td style="border-bottom: 1px solid #ddd; text-align: right; padding: 10px;">${item.quantity}</td>
                           <td style="border-bottom: 1px solid #ddd; text-align: right; padding: 10px;">${currencySymbol}${((item.offerPrice || item.price) * item.quantity).toFixed(2)}</td>
                       </tr>`
-                        )
-                        .join("")}
+        )
+        .join("")}
                   </tbody>
               </table>
   
@@ -595,55 +595,65 @@ const sendEmail = async (req, res) => {
   
               <h4>Payment Method:</h4>
               <p>${paymentMethod.toUpperCase()}${paymentMethod === "Razorpay" ? " (Paid)" : paymentMethod === "cod" ? " (Pay on Delivery)" : " (Payment Done ✔️)"}</p>
-              ${
-                paymentId
-                  ? `
+              ${paymentId
+        ? `
                   <h4>Payment ID:</h4>
                   <p>${paymentId}</p>
                   `
-                  : ""
-              }
+        : ""
+      }
   
-              <p>If you have any questions, please contact us at <a href="mailto:support@example.com">support@example.com</a>.</p>
+              <div className="text-center text-sm text-zinc-400 space-y-1">
+                <p>
+                  Have questions? Contact us:
+                </p>
+                <p>
+                  <a href="mailto:dressfashiond@gmail.com" className="text-pink-400 hover:underline">dressfashiond@gmail.com</a>
+                </p>
+                <p>
+                  <a href="tel:+919160227573" className="text-pink-400 hover:underline">+91 91602 27573</a>
+                </p>
+              </div>
+
               
               <p style="text-align: center; color: #777;">Thank you for shopping with us!</p>
           </div>
       </body>
       </html>
       `;
-      console.log("sendEmail: Email template prepared for:", customerEmail);
-  
-      const transporter = nodemailer.createTransport({
-        service: "Gmail",
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
-        },
-      });
-  
-      await transporter.sendMail({
-        from: `"VT Fashions" <${process.env.EMAIL_USER}>`,
-        to: customerEmail,
-        subject: "VT Fashions Order Confirmation",
-        html: emailTemplate,
-      });
-      console.log("sendEmail: Email sent to customer:", customerEmail);
-  
-      await transporter.sendMail({
-        from: `"VT Fashions" <${process.env.EMAIL_USER}>`,
-        to: adminEmail,
-        subject: "New Order Received",
-        html: emailTemplate,
-      });
-      console.log("sendEmail: Email sent to admin:", adminEmail);
-  
-      res.status(200).json({ success: true, message: "Email sent successfully" });
-    } catch (error) {
-      console.error("sendEmail: Error:", error.message);
-      res.status(500).json({ success: false, message: "Failed to send email" });
-    }
-  };
-  
+    console.log("sendEmail: Email template prepared for:", customerEmail);
+
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"VT Fashions" <${process.env.EMAIL_USER}>`,
+      to: customerEmail,
+      subject: "VT Fashions Order Confirmation",
+      html: emailTemplate,
+    });
+    console.log("sendEmail: Email sent to customer:", customerEmail);
+
+    await transporter.sendMail({
+      from: `"VT Fashions" <${process.env.EMAIL_USER}>`,
+      to: adminEmail,
+      subject: "New Order Received",
+      html: emailTemplate,
+    });
+    console.log("sendEmail: Email sent to admin:", adminEmail);
+
+    res.status(200).json({ success: true, message: "Email sent successfully" });
+  } catch (error) {
+    console.error("sendEmail: Error:", error.message);
+    res.status(500).json({ success: false, message: "Failed to send email" });
+  }
+};
+
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {
   console.log("allOrders: Request received");
