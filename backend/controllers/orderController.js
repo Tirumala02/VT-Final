@@ -555,7 +555,7 @@ const sendEmail = async (req, res) => {
     const { address, items, amount, paymentMethod, date, paymentId } = orderData;
     console.log("paymentId", paymentId);
     const customerEmail = orderData.email;
-    const adminEmail = "anub0709@gmail.com"; // Replace with your admin email
+    const adminEmail = "dressfashiond@gmail.com"; // Replace with your admin email
     const currencySymbol = "₹";
 
     const emailTemplate = `
