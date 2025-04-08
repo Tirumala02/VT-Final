@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Cookies from 'js-cookie';
 
 const Login = () => {
 
@@ -14,6 +15,8 @@ const Login = () => {
 
   const onSubmitHandler = async (event) => {
       event.preventDefault();
+      Cookies.remove('tempUser')
+      Cookies.remove('hasSeenWhatsAppGuide')
       try {
         if (currentState === 'Sign Up') {
           
@@ -42,6 +45,7 @@ const Login = () => {
         console.log(error)
         toast.error(error.message)
       }
+      
   }
 
   useEffect(()=>{

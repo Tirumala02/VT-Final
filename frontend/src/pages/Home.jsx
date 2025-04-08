@@ -3,13 +3,14 @@ import Hero from '../components/Hero'
 import LatestCollection from '../components/LatestCollection'
 import BestSeller from '../components/BestSeller'
 import OurPolicy from '../components/OurPolicy'
-import custDesign from '../components/custDesign'
+import ProductCategories from '../components/ProductsCategories'
 // import NewsletterBox from '../components/NewsletterBox'
 
 const Home = () => {
   return (
     <div>
       <Hero />
+      <ProductCategories/>
       <LatestCollection/>
       <BestSeller/>
       <custDesign/>

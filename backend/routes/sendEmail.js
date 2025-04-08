@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 
+
 router.post('/send-email', async (req, res) => {
     const { orderData } = req.body;
 
@@ -12,7 +13,7 @@ router.post('/send-email', async (req, res) => {
     // Define email content
     const { address, items, amount } = orderData;
     const customerEmail = orderData.email;
-    const adminEmail = "tirumalamahali@gmail.com"; // Replace with actual admin email
+    const adminEmail = "anub0709@gmail.com"; // Replace with actual admin email
 
     // Order Summary HTML Template
     const emailTemplate = `

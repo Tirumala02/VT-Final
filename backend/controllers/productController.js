@@ -6,7 +6,7 @@ import productModel from "../models/productModel.js"
 const addProduct = async (req, res) => {
     try {
 
-        const { name, description, price, category, subCategory, sizes, bestseller } = req.body
+        const { name, description, price, offerPrice, category, subCategory, sizes, bestseller } = req.body
 
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
@@ -27,6 +27,7 @@ const addProduct = async (req, res) => {
             description,
             category,
             price: Number(price),
+            offerPrice: Number(offerPrice),
             subCategory,
             bestseller: bestseller === "true" ? true : false,
             sizes: JSON.parse(sizes),
@@ -60,6 +61,28 @@ const listProducts = async (req, res) => {
     }
 }
 
+// function for updating price
+const updatePrice = async (req, res) => {
+    try {
+      const { id, price, offerPrice } = req.body
+      
+      const updatedProduct = await productModel.findByIdAndUpdate(
+        id,
+        { $set: { price, offerPrice } },
+        { new: true }
+      )
+      
+      if (!updatedProduct) {
+        return res.status(404).send({ success: false, message: "Product not found" })
+      }
+      
+      res.status(200).send({ success: true, message: "Prices updated successfully", product: updatedProduct })
+    } catch (error) {
+      res.status(500).send({ success: false, message: "Error updating prices", error: error.message })
+    }
+  }
+
+
 // function for removing product
 const removeProduct = async (req, res) => {
     try {
@@ -87,4 +110,4 @@ const singleProduct = async (req, res) => {
     }
 }
 
-export { listProducts, addProduct, removeProduct, singleProduct }
+export { listProducts, addProduct, removeProduct, singleProduct, updatePrice }

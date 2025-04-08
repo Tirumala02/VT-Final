@@ -73,11 +73,13 @@ import contact_img from './contact_img.png'
 import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
-
+import empty_cart from './empty_cart.jpg'
+import no_orders from './no-orders.webp'
 export const assets = {
     logo,
     hero_img,
     cart_icon,
+    empty_cart,
     dropdown_icon,
     exchange_icon,
     profile_icon,
@@ -92,7 +94,8 @@ export const assets = {
     contact_img,
     razorpay_logo,
     stripe_logo,
-    cross_icon
+    cross_icon,
+    no_orders
 }
 
 export const products = [

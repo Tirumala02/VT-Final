@@ -7,28 +7,23 @@ const Contact = () => {
   return (
     <div>
       
-      <div className='text-center text-2xl pt-10 border-t'>
-          <Title text1={'CONTACT'} text2={'US'} />
+      <div className='text-center text-2xl pt-10 border-t border-[#283593]'>
+          <Title text1={'CONTACT'} text2={'US'} color={'#D50000'} />
       </div>
 
       <div className='my-10 flex flex-col justify-center md:flex-row gap-10 mb-28'>
-        <img className='w-full md:max-w-[480px]' src={assets.contact_img} alt="" />
+        <img className='w-full md:max-w-[480px] border-2 border-[#283593]' src={assets.contact_img} alt="" />
         <div className='flex flex-col justify-center items-start gap-6'>
-          <p className='font-semibold text-xl text-gray-600'>Our Store</p>
-          <p className=' text-gray-500'>
+          <p className='font-semibold text-xl text-[#283593]'>Our Store</p>
+          <p className='text-gray-700'>
             Shop No.4, Sharada Complex <br />
             Near J.J. Hospital, Kalyan Nagar X Road, <br />
             S.R. Nagar, Hyderabad - 500038
           </p>
-          <p className=' text-gray-500'>
+          <p className='text-gray-700'>
             Tel: +91-XXXXXXXXXX <br />
-            Email: contact@Venkateshcollections.com
+            Email: <span className='text-[#D50000]'>contact@vtfashions.com</span>
           </p>
-          {/* <p className='font-semibold text-xl text-gray-600'>Careers at Venkatesh Collections</p>
-          <p className=' text-gray-500'>We’re always looking for passionate individuals to join our team. Explore exciting career opportunities and be part of our journey in redefining fashion.</p>
-          <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>
-            Explore Jobs
-          </button> */}
         </div>
       </div>
 
