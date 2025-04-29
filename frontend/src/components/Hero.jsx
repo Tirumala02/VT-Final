@@ -4,28 +4,28 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
-    title: "Midnight Breeze Half-Sleeve Shirt",
-    description: "Upgrade your style with our premium half-hand shirts, designed for ultimate comfort and a modern fit.",
+    title: "Elevate your everyday look with our stylish shirts.",
+    description: " ",
     imageUrl:"https://res.cloudinary.com/dx2dvybl9/image/upload/v1741501862/vmqshkcg7rw5dwdpkb7l.jpg",
-    imageAlt: "Midnight Breeze Half-Sleeve Shirt"
+    imageAlt: "Elevate your everyday look with our stylish shirts."
   },
   {
-    title: "Emerald Drift Half-Sleeve Shirt",
-    description: "Stay cool and stylish with our trendsetting half-sleeve shirts, crafted from high-quality breathable fabric.",
-    imageUrl: "https://res.cloudinary.com/dx2dvybl9/image/upload/v1741502173/avbsvb7nxosjk37cpjgn.jpg",
-    imageAlt: "Emerald Drift Half-Sleeve Shirt"
+    title: "lassic pants designed for comfort and style.",
+    description: " ",
+    imageUrl: "https://assets.ajio.com/medias/sys_master/root/20241112/LIuo/67338e16260f9c41e8d55613/-1117Wx1400H-700729505-grey-MODEL.jpg",
+    imageAlt: "lassic pants designed for comfort and style."
   },
   {
-    title: "Frosted Petals Bloom Half-Sleeve Shirt",
-    description: "Make a statement with our designer half-hand shirts, featuring bold patterns and impeccable craftsmanship.",
-    imageUrl: "https://res.cloudinary.com/dx2dvybl9/image/upload/v1741502611/rollkvszez05llor0tua.jpg",
-    imageAlt: "Frosted Petals Bloom Half-Sleeve Shirt ",
+    title: "Stay cool and casual with our premium T-shirts.",
+    description: " ",
+    imageUrl: "https://assets.ajio.com/medias/sys_master/root/20230703/zEjF/64a2f7b8eebac147fc48ac61/-1117Wx1400H-466325670-purple-MODEL.jpg",
+    imageAlt: "Stay cool and casual with our premium T-shirts.",
   },
   {
-    title: "Blazing Mirage Half-Hand Shirt",
-    description: "Effortlessly stylish and versatile, our half-hand shirts are perfect for any occasion—casual or formal.",
-    imageUrl: "https://res.cloudinary.com/dx2dvybl9/image/upload/v1741502232/qonyun8yh1mh9qighrpv.jpg",
-    imageAlt: "Blazing Mirage Half-Hand Shirt"
+    title: "Move freely and comfortably in our track pants.",
+    description: " ",
+    imageUrl: "https://assets.ajio.com/medias/sys_master/root/20220125/NdPb/61ef13c0aeb2695cdd2bb6b8/-473Wx593H-441128505-jetblack-MODEL.jpg",
+    imageAlt: "Move freely and comfortably in our track pants."
   },
 ];
 
@@ -60,9 +60,7 @@ const HeroSlide = ({ data, direction }) => (
         transition={{ delay: 0.6 }}
         className="flex justify-center gap-4"
       >
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
-          Buy Now
-        </button>
+        
       </motion.div>
     </div>
     <motion.img
